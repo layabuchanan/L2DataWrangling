@@ -1,0 +1,55 @@
+---
+title: "Data Manipulation"
+output: github_document
+---
+
+```{r setup}
+library(tidyverse)
+```
+## Load the FAS Litters data
+
+```{r}
+litters_df = read_csv("./data/FAS_litters.csv")
+litters_df = janitor::clean_names(litters_df)
+```
+
+33 'select'
+
+Choose some columns and not others
+
+```{r}
+select(litters_df, group, litter_number)
+```
+```{r}
+select(litters_df, -litter_number)
+```
+Renaming columns ... 
+
+```{r}
+select(litters_df, GROUP = group, LITTer_NUMBer = litter_number)
+```
+
+Select helpers
+
+```{r}
+select(litters_df, starts_with("gd"))
+
+```
+
+```{r}
+relocate(litters_df, litter_number)
+```
+
+## 'filter'
+
+```{r}
+filter(litters_df, gd0_weight < 22)
+```
+
+```{r}
+filter(litters_df, gd0_weight >= 22)
+```
+
+```{r}
+filter(litters_df, gd0_weight >= 22, gd_of_birth == 20)
+```
